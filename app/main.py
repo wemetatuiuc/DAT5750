@@ -70,7 +70,7 @@ Important:
 
     # Call chosen provider
     if provider == "openai":
-        text = run_openai(llm_input, model=model or "gpt-5.2")
+        text = run_openai(llm_input, model=model or "gpt-4o-mini")
     else:
         text = run_anthropic(llm_input, model=model or "claude-sonnet-4-5-20250929")
 
