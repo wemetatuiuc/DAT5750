@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>XML Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { font-family: system-ui, Arial; max-width: 900px; margin: 40px auto; padding: 0 16px; }
+      textarea { width: 100%; min-height: 120px; }
+      .row { display: flex; gap: 12px; flex-wrap: wrap; }
+      .row > div { flex: 1; min-width: 240px; }
+      button { padding: 10px 14px; cursor: pointer; }
+      .hint { color: #555; font-size: 14px; }
+      #status { margin-top: 12px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>XML Assistant (CSV/XML generator)</h1>
+    <p class="hint">Upload an XML file, write what you want, choose CSV or XML, and download the result.</p>
+
+    <form id="form">
+      <div>
+        <label>XML File</label><br/>
+        <input type="file" name="file" accept=".xml,text/xml,application/xml" required />
+      </div>
+
+      <div style="margin-top: 12px;">
+        <label>Prompt (no coding)</label><br/>
+        <textarea name="prompt" placeholder="Example: Extract all items with fields id, name, price. Group by category and output CSV."></textarea>
+      </div>
+
+      <div class="row" style="margin-top: 12px;">
+        <div>
+          <label>Provider</label><br/>
+          <select name="provider">
+            <option value="openai">ChatGPT (OpenAI API)</option>
+            <option value="anthropic">Claude (Anthropic API)</option>
+          </select>
+        </div>
+        <div>
+          <label>Output format</label><br/>
+          <select name="output_format">
+            <option value="csv">CSV</option>
+            <option value="xml">XML</option>
+          </select>
+        </div>
+        <div>
+          <label>Model (optional override)</label><br/>
+          <input name="model" placeholder="leave blank for default" />
+        </div>
+      </div>
+
+      <div style="margin-top: 16px;">
+        <button type="submit">Analyze & Download</button>
+      </div>
+    </form>
+
+    <div id="status"></div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
