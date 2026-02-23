@@ -37,7 +37,7 @@ async def analyze(
     except UnicodeDecodeError:
         raise HTTPException(status_code=400, detail="File is not valid UTF-8 text")
 
-    llm_input = prompt.strip() + "\n\n +" xml_content
+    llm_input = prompt.strip() + "\n\n +" + xml_content
 
     # Call chosen provider
     if provider == "openai":
