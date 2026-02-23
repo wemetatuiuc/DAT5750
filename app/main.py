@@ -30,8 +30,14 @@ async def analyze(
     xml_bytes = await file.read()
     if not xml_bytes:
         raise HTTPException(status_code=400, detail="Empty file")
+    
+    # Convert bytes -> string
+    try:
+        xml_content = xml_bytes.decode("utf-8")
+    except UnicodeDecodeError:
+        raise HTTPException(status_code=400, detail="File is not valid UTF-8 text")
 
-    llm_input = prompt.strip()
+    llm_input = prompt.strip() + "\n\n +" xml_content
 
     # Call chosen provider
     if provider == "openai":
