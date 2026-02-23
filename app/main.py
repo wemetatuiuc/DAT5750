@@ -41,9 +41,9 @@ async def analyze(
 
     # Call chosen provider
     if provider == "openai":
-        text = run_openai(llm_input, model=model or "gpt-4o-mini")
+        text = run_openai(llm_input, model=model or "gpt-5.2")
     else:
-        text = run_anthropic(llm_input, model=model or "claude-haiku-4-5")
+        text = run_anthropic(llm_input, model=model or "claude-sonnet-4-5-20250929")
 
     # Return as downloadable file
     filename = "result.csv"
